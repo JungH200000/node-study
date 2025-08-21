@@ -1,1 +1,52 @@
 GET http://localhost:3000/tasks
+
+###
+
+GET http://localhost:3000/tasks?sort=oldest&count=3
+
+###
+
+GET http://localhost:3000/tasks/1
+
+###
+
+GET http://localhost:3000/tasks/10
+
+###
+
+POST http://localhost:3000/tasks
+Content-Type: application/json
+
+{
+  "title": "게임하기",
+  "description": "명조:워더링웨이브 일일 퀘스트 수행"
+}
+
+###
+
+POST http://localhost:3000/tasks
+Content-Type: application/json
+
+{
+  "title": "본가 방문"
+}
+
+###
+
+
+PATCH http://localhost:3000/tasks/1
+Content-Type: application/json
+
+{
+  "isComplete": true
+}
+
+###
+
+PATCH http://localhost:3000/tasks/1
+Content-Type: application/json
+
+{
+  "title": "밥 먹으로 시내가기",
+  "description": "돈까스!"
+}
