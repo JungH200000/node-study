@@ -50,3 +50,7 @@ Content-Type: application/json
   "title": "밥 먹으로 시내가기",
   "description": "돈까스!"
 }
+
+###
+
+DELETE http://localhost:3000/tasks/1

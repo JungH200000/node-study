@@ -58,6 +58,18 @@ app.patch('/subscriptions/:id', (req, res) => {
   }
 });
 
+app.delete('/subscriptions/:id', (req, res) => {
+  const id = Number(req.params.id);
+  const idx = subscriptions.findIndex((sub) => sub.id === id);
+
+  if (idx >= 0) {
+    subscriptions.splice(idx, 1);
+    res.sendStatus(204);
+  } else {
+    res.status(404).send({ message: 'Cannot find given id' });
+  }
+});
+
 app.listen(3000, () => {
   console.log('Server start on port 3000');
   console.log(`http://localhost:3000`);
