@@ -1,8 +1,9 @@
-// node01-start-javascript-backend/todo-api/app.js
+// todo-api/app.js
 import express from 'express';
-import tasks from './data/mock.js';
+import mockTasks from './data/mock.js';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import Task from './models/Taks.js';
 
 // .env 파일의 내용을 process.env에 로드
 dotenv.config();
@@ -10,7 +11,7 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-app.get('/tasks', (req, res) => {
+app.get('/tasks', async (req, res) => {
   /**
    * 쿼리 파라미터를 받아 task 목록을 정렬하고 개수를 제한합니다.
    * sort - 'oldest'인 경우 오래된 순, 그 외에는 최신 순으로 정렬합니다. (기본값: 최신 순)
@@ -19,23 +20,19 @@ app.get('/tasks', (req, res) => {
   const { sort, count: countStr } = req.query;
   const count = Number(countStr);
 
-  // prettier-ignore
-  const compareFn = sort === 'oldest' 
-      ? (a, b) => a.createdAt - b.createdAt 
-      : (a, b) => b.createdAt - a.createdAt;
-  let newTasks = [...tasks].sort(compareFn);
+  // 정해진 필드의 정렬 방향만 변경
+  const sortOption = { createdAt: sort === 'oldest' ? 'asc' : 'desc' };
 
-  if (count) {
-    // count 파라미터가 유효한 숫자인 경우
-    newTasks = newTasks.slice(0, count);
-  }
+  const tasks = await Task.find().sort(sortOption).limit(count);
 
-  res.send(newTasks);
+  res.send(tasks);
 });
 
-app.get('/tasks/:id', (req, res) => {
-  const id = Number(req.params.id);
-  const task = tasks.find((task) => task.id === id);
+// 데이터를 조회할 때는 특정 id에 대한 데이터를 조회할 때가 많다.
+// 그래서 mongoose는 findById 메소드를 제공한다.
+app.get('/tasks/:id', async (req, res) => {
+  const id = req.params.id;
+  const task = await Task.findById(id);
 
   if (task) {
     res.send(task);
@@ -44,21 +41,14 @@ app.get('/tasks/:id', (req, res) => {
   }
 });
 
-app.post('/tasks', (req, res) => {
-  const newTask = req.body;
-  const ids = tasks.map((task) => task.id);
-  newTask.id = Math.max(...ids) + 1;
-  newTask.isComplete = false;
-  newTask.createdAt = new Date();
-  newTask.updatedAt = new Date();
-
-  tasks.push(newTask);
+app.post('/tasks', async (req, res) => {
+  const newTask = await Task.create(req.body);
   res.status(201).send(newTask);
 });
 
 app.patch('/tasks/:id', (req, res) => {
   const id = Number(req.params.id);
-  const task = tasks.find((task) => task.id === id);
+  const task = mockTasks.find((task) => task.id === id);
 
   if (task) {
     Object.keys(req.body).forEach((key) => {
@@ -73,10 +63,10 @@ app.patch('/tasks/:id', (req, res) => {
 
 app.delete('/tasks/:id', (req, res) => {
   const id = Number(req.params.id);
-  const idx = tasks.findIndex((task) => task.id === id);
+  const idx = mockTasks.findIndex((task) => task.id === id);
 
   if (idx >= 0) {
-    tasks.splice(idx, 1);
+    mockTasks.splice(idx, 1);
     res.sendStatus(204);
   } else {
     res.status(404).send({ message: 'Cannot find given id.' });

@@ -6,11 +6,11 @@ GET http://localhost:3000/tasks?sort=oldest&count=3
 
 ###
 
-GET http://localhost:3000/tasks/1
+GET http://localhost:3000/tasks/68a7efff0b4c24193c10d093
 
 ###
 
-GET http://localhost:3000/tasks/10
+GET http://localhost:3000/tasks/68a7efff0b4c24193c10d090
 
 ###
 
@@ -33,7 +33,32 @@ Content-Type: application/json
 
 ###
 
+POST http://localhost:3000/tasks
+Content-Type: application/json
 
+{
+  "description": "기차타고, 버스타고, 지하철타고"
+}
+
+###
+
+POST http://localhost:3000/tasks
+Content-Type: application/json
+
+{
+  "title": "기차타고, 버스타고, 지하철타고, 기차타고, 버스타고, 지하철타고, 기차타고, 버스타고, 지하철타고, 기차타고, 버스타고, 지하철타고, 기차타고, 버스타고, 지하철타고"
+}
+
+###
+
+POST http://localhost:3000/tasks
+Content-Type: application/json
+
+{
+  "title": "하"
+}
+
+###
 PATCH http://localhost:3000/tasks/1
 Content-Type: application/json
 

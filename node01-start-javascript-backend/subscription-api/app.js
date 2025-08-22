@@ -1,25 +1,30 @@
 // node01-start-javascript-backend/subscription-api/app.js
 import express from 'express';
-import subscriptions from './data/mock.js';
+import mockSubscriptions from './data/mock.js';
+import dotenv from 'dotenv';
+import mongoose from 'mongoose';
+import Subscription from './models/Subscription.js';
+
+dotenv.config();
 
 const app = express();
 app.use(express.json());
 
-app.get('/subscriptions', (req, res) => {
+app.get('/subscriptions', async (req, res) => {
   const { sort } = req.query;
 
-  // prettier-ignore
-  const compareFn = sort === 'price' 
-      ? (a, b) => b.price - a.price 
-      : (a, b) => b.createdAt - a.createdAt;
-  const newSubscriptions = [...subscriptions].sort(compareFn);
+  //prettier-ignore
+  const sortOption = sort === 'price'
+      ? {price: 'desc'} : {createdAt: 'desc'};
+  const subscriptions = await Subscription.find().sort(sortOption);
 
-  res.send(newSubscriptions);
+  res.send(subscriptions);
 });
 
-app.get('/subscriptions/:id', (req, res) => {
-  const id = Number(req.params.id);
-  const subscription = subscriptions.find((sub) => sub.id === id);
+app.get('/subscriptions/:id', async (req, res) => {
+  const id = req.params.id;
+  const subscription = await Subscription.findById(id);
+
   if (subscription) {
     res.send(subscription);
   } else {
@@ -32,20 +37,14 @@ function getNextId(arr) {
   return Math.max(...ids) + 1;
 }
 
-app.post('/subscriptions', (req, res) => {
-  const newSubscription = req.body;
-
-  newSubscription.id = getNextId(subscriptions);
-  newSubscription.createdAt = new Date();
-  newSubscription.updatedAt = new Date();
-
-  subscriptions.push(newSubscription);
+app.post('/subscriptions', async (req, res) => {
+  const newSubscription = await Subscription.create(req.body);
   res.status(201).send(newSubscription);
 });
 
 app.patch('/subscriptions/:id', (req, res) => {
   const id = Number(req.params.id);
-  const subscription = subscriptions.find((sub) => sub.id === id);
+  const subscription = mockSubscriptions.find((sub) => sub.id === id);
 
   if (subscription) {
     Object.keys(req.body).forEach((key) => {
@@ -60,15 +59,21 @@ app.patch('/subscriptions/:id', (req, res) => {
 
 app.delete('/subscriptions/:id', (req, res) => {
   const id = Number(req.params.id);
-  const idx = subscriptions.findIndex((sub) => sub.id === id);
+  const idx = mockSubscriptions.findIndex((sub) => sub.id === id);
 
   if (idx >= 0) {
-    subscriptions.splice(idx, 1);
+    mockSubscriptions.splice(idx, 1);
     res.sendStatus(204);
   } else {
     res.status(404).send({ message: 'Cannot find given id' });
   }
 });
+
+//prettier-ignore
+mongoose
+  .connect(process.env.DATABASE_URL)
+  .then(() => console.log('✅ Connected to DB'))
+  .catch((err) => console.log('❌ DB Connection Error:', err));
 
 app.listen(3000, () => {
   console.log('Server start on port 3000');

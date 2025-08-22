@@ -6,11 +6,11 @@ GET http://localhost:3000/subscriptions?sort=price
 
 ###
 
-GET http://localhost:3000/subscriptions/1
+GET http://localhost:3000/subscriptions/68a7fbedef83ece86e01d02a
 
 ###
 
-GET http://localhost:3000/subscriptions/10
+GET http://localhost:3000/subscriptions/68a7fbedef83ece86e01d02d
 
 ###
 
@@ -47,3 +47,15 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:3000/subscriptions/2
+
+###
+
+POST http://localhost:3000/subscriptions
+Content-Type: application/json
+
+{
+  "name": "디즈니 플러스",
+  "price": 99000,
+  "cycle": "y",
+  "firstPaymentDate": "2023-04-30"
+}

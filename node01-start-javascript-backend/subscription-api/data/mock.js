@@ -1,7 +1,6 @@
 // node01-start-javascript-backend/subscription-api/data/mock.js
 const data = [
   {
-    id: 1,
     name: '유튜브 프리미엄',
     price: 10450,
     cycle: 'm',
@@ -10,7 +9,6 @@ const data = [
     updatedAt: new Date('2023-03-23T06:34:07.617Z'),
   },
   {
-    id: 2,
     name: '쿠팡 와우',
     price: 4990,
     cycle: 'm',
@@ -19,7 +17,6 @@ const data = [
     updatedAt: new Date('2023-03-23T06:34:08.617Z'),
   },
   {
-    id: 3,
     name: '코드잇',
     price: 329000,
     cycle: 'y',
@@ -28,7 +25,6 @@ const data = [
     updatedAt: new Date('2023-03-23T06:34:09.617Z'),
   },
   {
-    id: 4,
     name: '스포티파이 베이직',
     price: 7900,
     cycle: 'm',
@@ -37,7 +33,6 @@ const data = [
     updatedAt: new Date('2023-03-23T06:34:10.617Z'),
   },
   {
-    id: 5,
     name: '넷플릭스 프리미엄',
     price: 17000,
     cycle: 'm',
