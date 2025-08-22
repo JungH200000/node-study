@@ -1,6 +1,11 @@
 // node01-start-javascript-backend/todo-api/app.js
 import express from 'express';
 import tasks from './data/mock.js';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+// .env 파일의 내용을 process.env에 로드
+dotenv.config();
 
 const app = express();
 app.use(express.json());
@@ -77,6 +82,12 @@ app.delete('/tasks/:id', (req, res) => {
     res.status(404).send({ message: 'Cannot find given id.' });
   }
 });
+
+//prettier-ignore
+mongoose
+  .connect(process.env.DATABASE_URL)
+  .then(() => console.log('✅ Connected to DB'))
+  .catch((err) => console.log('❌ DB Connection Error:', err));
 
 app.listen(3000, () => {
   console.log('Server started on port 3000');
