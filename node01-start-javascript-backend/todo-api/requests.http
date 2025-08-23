@@ -18,8 +18,20 @@ POST http://localhost:3000/tasks
 Content-Type: application/json
 
 {
-  "title": "게임하기",
-  "description": "명조:워더링웨이브 일일 퀘스트 수행"
+  "title": "임",
+  "description": "명조:워더링웨이브 일일 퀘스트 수행",
+  "isComplete": false
+}
+
+###
+
+POST http://localhost:3000/tasks
+Content-Type: application/json
+
+{
+  "title": "밥",
+  "description": "배고파",
+  "isComplete": false
 }
 
 ###
@@ -68,7 +80,7 @@ Content-Type: application/json
 
 ###
 
-PATCH http://localhost:3000/tasks/1
+PATCH http://localhost:3000/tasks/68a7efff0b4c24193c10d093
 Content-Type: application/json
 
 {
@@ -78,4 +90,4 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3000/tasks/1
+DELETE http://localhost:3000/tasks/68a7efff0b4c24193c10d093

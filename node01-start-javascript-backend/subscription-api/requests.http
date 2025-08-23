@@ -6,7 +6,7 @@ GET http://localhost:3000/subscriptions?sort=price
 
 ###
 
-GET http://localhost:3000/subscriptions/68a7fbedef83ece86e01d02a
+GET http://localhost:3000/subscriptions/68a7fbedef83ece86e01d02b
 
 ###
 
@@ -56,6 +56,24 @@ Content-Type: application/json
 {
   "name": "디즈니 플러스",
   "price": 99000,
-  "cycle": "y",
-  "firstPaymentDate": "2023-04-30"
+  "cycle": "yearly",
+  "firstPaymentDate": "2023-04-35"
 }
+
+###
+
+GET http://localhost:3000/subscriptions/invalid-id
+
+###
+
+PATCH http://localhost:3000/subscriptions/68a7fbedef83ece86e01d02b
+Content-Type: application/json
+
+{
+  "price": 8900,
+  "firstPaymentDate": "2023-05-13"
+}
+
+###
+
+DELETE http://localhost:3000/subscriptions/68a7fbedef83ece86e01d02c

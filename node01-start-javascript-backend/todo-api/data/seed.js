@@ -1,7 +1,7 @@
 // todo-api/data/seed.js
 import mongoose from 'mongoose';
 import data from './mock.js';
-import Task from '../models/Taks.js';
+import Task from '../models/Task.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
