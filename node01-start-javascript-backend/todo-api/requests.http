@@ -91,3 +91,11 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:3000/tasks/68a7efff0b4c24193c10d093
+
+###
+
+GET https://todo-api-3prg.onrender.com/tasks
+
+###
+
+GET https://todo-api-3prg.onrender.com/tasks/68a974b9f76c8b626d15d2be
