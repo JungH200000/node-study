@@ -1,0 +1,41 @@
+# e-commerce/http/users.http
+
+GET http://localhost:3000/users
+
+###
+GET http://localhost:3000/users?order=oldest
+###
+GET http://localhost:3000/users?limit=2&offset=2
+###
+GET http://localhost:3000/users?limit=2&offset=2&order=2
+###
+
+GET http://localhost:3000/users/3a226c00-2e67-4210-9587-49e7cd420b34
+
+###
+
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "email": "hyun@example.com",
+  "firstName": "사",
+  "lastName": "현",
+  "address": "부산광역시 북구"
+}
+
+###
+
+PATCH http://localhost:3000/users/fbe4c0e8-56cc-490a-a628-49080086a611
+Content-Type: application/json
+
+{
+  "address": "제주특별자치도 서귀포시"
+}
+
+###
+
+DELETE http://localhost:3000/users/fbe4c0e8-56cc-490a-a628-49080086a611
+
+###
+
