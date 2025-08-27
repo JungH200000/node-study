@@ -39,3 +39,60 @@ DELETE http://localhost:3000/users/fbe4c0e8-56cc-490a-a628-49080086a611
 
 ###
 
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "email": "hyun",
+  "firstName": "사",
+  "lastName": "현",
+  "address": "부산광역시 북구"
+}
+
+###
+
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "email": "hyun@example.com",
+  "firstName": "사원사원사원사원사원사원사원사원사원사원사원사원사원사원사원사원사원사원사원사원사원사원사원사원사원사원사원사원사원사원사원사원사원사원사원사원사원사원사원사원사원사원",
+  "lastName": "현",
+  "address": "부산광역시 북구"
+}
+
+###
+
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "email": "hyun@example.com",
+  "firstName": "사",
+  "lastName": "현",
+  "address": "부산광역시 북구",
+  "age": 20
+}
+
+###
+
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "email": "hyun@example.com",
+  "firstName": "사",
+  "lastName": "현",
+  "address": 123
+}
+
+###
+
+PATCH http://localhost:3000/users/fbe4c0e8-56cc-490a-a628-49080086a611
+Content-Type: application/json
+
+{
+  "email": "yikim"
+}
+
+###
