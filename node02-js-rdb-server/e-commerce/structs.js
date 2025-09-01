@@ -1,21 +1,24 @@
-// e-commerce/structs.js
+// /structs.js
 import * as s from 'superstruct';
 import isEmail from 'is-email';
-// 지금은 is-uuid가 필요하지 않다.
+import isUuid from 'is-uuid';
 
 /* ========== User ========== */
 export const CreateUser = s.object({
-  // 예를 들어 email 문자열이 실제 이메일 주소인지 검사하고, firstName과 lastName은 영어 이름까지 고려해서 1~30글자 사이인지 확인해보겠다.
   email: s.define('Email', isEmail),
   firstName: s.size(s.string(), 1, 30),
   lastName: s.size(s.string(), 1, 30),
   address: s.string(),
+  userPreference: s.object({
+    receiveEmail: s.boolean(),
+  }),
 });
 
 export const PatchUser = s.partial(CreateUser);
 
 /* ========== Product ========== */
 const category = ['FASHION', 'SPORTS', 'ELECTRONICS', 'HOME_INTERIOR', 'HOUSEHOLD_SUPPLIES', 'KITCHENWARE'];
+
 export const CreateProduct = s.object({
   name: s.size(s.string(), 1, 60),
   description: s.string(),
@@ -26,3 +29,31 @@ export const CreateProduct = s.object({
 });
 
 export const PatchProduct = s.partial(CreateProduct);
+
+/* ========== Order ========== */
+const STATUSES = ['PENDING', 'COMPLETE'];
+
+const Uuid = s.define('Uuid', (value) => isUuid.v4(value));
+
+export const CreateOrder = s.object({
+  userId: Uuid,
+  orderItems: s.size(
+    s.array(
+      s.object({
+        productId: Uuid,
+        unitPrice: s.min(s.number(), 0),
+        quantity: s.min(s.integer(), 1),
+      })
+    ),
+    1,
+    Infinity
+  ),
+});
+
+export const PatchOrder = s.object({
+  status: s.enums(STATUSES),
+});
+
+export const PostSavedProduct = s.object({
+  productId: Uuid,
+});
