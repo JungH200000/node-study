@@ -11,7 +11,7 @@ async function main() {
   await prisma.userPreference.deleteMany();
   await prisma.user.deleteMany();
   await prisma.product.deleteMany();
-  console.log('🗑️ All existing data deleted.');
+  console.log('🗑️  All existing data deleted.');
 
   // 2. 참조되는 데이터(부모) 먼저 생성
   await prisma.product.createMany({
