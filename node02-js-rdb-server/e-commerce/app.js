@@ -296,12 +296,44 @@ app.post(
   '/orders',
   asyncHandler(async (req, res) => {
     assert(req.body, CreateOrder);
-    const { orderItems, ...orderFields } = req.body;
-    //const { userId, orderItems } = req.body;
-    const order = await prisma.order.create({
+    // const { orderItems, ...orderFields } = req.body;
+    const { userId, orderItems } = req.body;
+    const productIds = orderItems.map((orderItem) => orderItem.productId);
+    const products = await prisma.product.findMany({
+      where: { id: { in: productIds } },
+    });
+
+    // quantity(주문 수량)
+    function getQuantity(productId) {
+      const orderItem = orderItems.find((orderItem) => orderItem.productId === productId);
+      return orderItem.quantity;
+    }
+
+    // 재고 확인
+    const isSufficientStock = products.every((product) => {
+      const { id, stock } = product;
+      return stock >= getQuantity(id);
+    });
+
+    // 오류 처리
+    if (!isSufficientStock) {
+      throw new Error('Insufficient Stock');
+    }
+
+    const updateQueries = productIds.map((productId) =>
+      prisma.product.update({
+        where: { id: productId },
+        data: {
+          stock: {
+            decrement: getQuantity(productId),
+          },
+        },
+      })
+    );
+
+    const createOrderQuery = prisma.order.create({
       data: {
-        ...orderFields,
-        //userId,
+        userId,
         orderItems: {
           create: orderItems,
         },
@@ -310,6 +342,11 @@ app.post(
         orderItems: true,
       },
     });
+
+    const results = await prisma.$transaction([...updateQueries, createOrderQuery]);
+
+    const order = results[results.length - 1];
+
     res.status(201).send(order);
   })
 );
