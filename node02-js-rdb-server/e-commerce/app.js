@@ -13,11 +13,14 @@ import {
   PatchOrder,
   PostSavedProduct,
 } from './structs.js';
+import cors from 'cors';
 
 dotenv.config();
 
 const prisma = new PrismaClient();
 const app = express();
+
+app.use(cors());
 app.use(express.json());
 
 function asyncHandler(handler) {
