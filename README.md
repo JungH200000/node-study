@@ -5,7 +5,7 @@ node.js를 이용한 백엔드 개발 학습 과정을 기록하고 정리하는
 
 ## 1. JavaScript 백엔드 개발 시작하기
 
-Node.js와 Express를 사용하여 기본적인 REST API 서버를 구축하는 방법을 학습했습니다.
+Node.js와 Express를 사용하여 기본적인 REST API 서버를 구축하는 방법을 학습
 
 ### **이 프로젝트를 통해 얻은 경험:**
 
@@ -21,7 +21,7 @@ Node.js와 Express를 사용하여 기본적인 REST API 서버를 구축하는 
 
 ## 2. 관계형 데이터베이스를 활용한 JavaScript 서버 만들기
 
-Node.js와 Express를 사용하는 서버에 PostgreSQL 관계형 데이터베이스를 연결하고 Prisma ORM을 이용해 데이터베이스 Schema를 만드는 방법을 학습하였습니다.
+Node.js와 Express를 사용하는 서버에 PostgreSQL 관계형 데이터베이스를 연결하고 Prisma ORM을 이용해 데이터베이스 Schema를 만드는 방법을 학습
 
 ### **이 프로젝트를 통해 얻은 경험:**
 
@@ -39,11 +39,14 @@ Node.js와 Express를 사용하는 서버에 PostgreSQL 관계형 데이터베�
 
 ## 3. Express 핵심 기능
 
-미들웨어, 라우터, 에러 핸들러와 같은 Express 구성 요소를 하나씩 살펴보면서 효율적으로 웹 서버를 만드는 방법을 학습하였습니다.
-
-### **이 프로젝트를 통해 얻은 경험:**
+미들웨어, 라우터, 에러 핸들러 같은 Express에서 웹 서버의 구현을 돕는 구성 요소를 학습
 
 ### **관련 링크**:
+
+- **Code**
+  - [Express Core Features](./node03-express-core-features/)
+- **Docs**
+  - [Express 핵심 기능](./docs/3.%20Express%20핵심%20기능/)
 
 ## 🛠️ 참고 자료 및 도구
 
