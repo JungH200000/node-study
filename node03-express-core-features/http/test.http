@@ -1,0 +1,32 @@
+### 05. (실습)
+PATCH http://localhost:3000/me?password=1234
+###
+PATCH http://localhost:3000/me?password=123456
+
+### 07. (실습)
+GET http://localhost:3000/products/1
+###
+GET http://localhost:3000/products/1/reviews
+###
+GET http://localhost:3000/products/2/reviews
+###
+GET http://localhost:3000/products/3/reviews
+
+### 10. (실습)
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "여름 추천 휴가지",
+  "content": "안녕하세요, 여름 휴가지로 제주도를 추천하는데요. 섭지코지, 한라산, 올레길, 성산 일출봉을 꼭 방문해보세요. 감사합니다!"
+}
+
+###
+
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "가을 추천 여행지",
+  "content": "안녕하세요, 가을 여행지로 강원도를 추천하는데요. 남이섬, 오대산, 설악산, 속초를 꼭 방문해보세요. 감사합니다!"
+}

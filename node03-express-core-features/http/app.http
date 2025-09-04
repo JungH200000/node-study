@@ -14,4 +14,28 @@ GET http://localhost:3000/me
 
 ### 08
 GET http://localhost:3000/error
+
+### 09
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{
+  "name": "상품 1",
+  "price": 10000
+}
+###
+POST http://localhost:3000/users
+Content-Type: application/x-www-form-urlencoded
+
+name=jung&age=32
+###
+GET http://localhost:3000/two_cat.png
+###
+GET http://localhost:3000/index.html
+
+### 11
+GET http://localhost:3000/hello
+Cookie: taste=chocolate
+###
+GET http://localhost:3000/hello
 ###
