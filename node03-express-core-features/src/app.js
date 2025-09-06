@@ -1,22 +1,23 @@
 // /node03-express-core-features
 // /src/app.js
 import express from 'express';
-import productRouter from './routes/product.router.js';
-import userRouter from './routes/user.router.js';
-import always from './middlewares/log.middleware.js';
+import multer from 'multer';
 
 const app = express();
 const PORT = 3000;
 
-app.use(always);
+const upload = multer({ dest: 'uploads/' });
 
-app.use('/products', productRouter);
-app.use('/users', userRouter);
-
-app.listen(3000, () => {
-  console.log('Server is listening on port 3000');
+app.post('/photos', upload.single('image'), (req, res) => {
+  //console.log(req.file);
+  const filename = req.file.filename;
+  const path = `/profile/${filename}`;
+  res.json({ path: path });
 });
 
+app.use('/profile', express.static('uploads/'));
+
+// 4. 서버를 실행합니다.
 app.listen(PORT, () => {
   console.log(`🚀 Server started on port ${PORT}`);
 });

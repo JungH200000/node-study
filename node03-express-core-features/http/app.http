@@ -51,4 +51,31 @@ DELETE http://localhost:3000/products/1
 ###
 GET http://localhost:3000/users
 
+### 04-02
+POST http://localhost:3000/files
+###
+POST http://localhost:3000/files
+Content-Type: multipart/form-data; boundary=Boundary01234567890123456789
+
+--Boundary01234567890123456789
+Content-Disposition: form-data; name="attachment"; filename="hello.txt"
+Content-Type: text/plain
+
+Hello!
+--Boundary01234567890123456789--
+
+### 04-03
+http://localhost:3000/6fd3ff726acf933464a78e0457eff2ce
+###
+POST http://localhost:3000/files
+Content-Type: multipart/form-data; boundary=Boundary01234567890123456789
+
+--Boundary01234567890123456789
+Content-Disposition: form-data; name="attachment"; filename="hello.txt"
+Content-Type: text/plain
+
+Hello!
+--Boundary01234567890123456789--
+###
+http://localhost:3000/files/deb1a2e20e39ee5dc0668b51f9d408a1
 ###
