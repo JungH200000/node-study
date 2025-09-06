@@ -7,10 +7,6 @@ node.js를 이용한 백엔드 개발 학습 과정을 기록하고 정리하는
 
 Node.js와 Express를 사용하여 기본적인 REST API 서버를 구축하는 방법을 학습
 
-### **이 프로젝트를 통해 얻은 경험:**
-
-- **Node.js와 Express**를 이용한 REST API 서버의 기본 구조 설계
-
 ### **관련 링크**:
 
 - **Code**
@@ -22,13 +18,6 @@ Node.js와 Express를 사용하여 기본적인 REST API 서버를 구축하는 
 ## 2. 관계형 데이터베이스를 활용한 JavaScript 서버 만들기
 
 Node.js와 Express를 사용하는 서버에 PostgreSQL 관계형 데이터베이스를 연결하고 Prisma ORM을 이용해 데이터베이스 Schema를 만드는 방법을 학습
-
-### **이 프로젝트를 통해 얻은 경험:**
-
-- **Prisma ORM**을 활용한 데이터베이스 Schema modeling 및 migration
-- 관계형 데이터베이스의 **1:1, 1:N, N:N 관계** 구현
-- **`superstruct`** 를 이용한 유효성 검사
-- **비동기 에러 처리** 및 **트랜잭션**을 통한 안정적인 로직 구현
 
 ### **관련 링크**:
 
@@ -47,6 +36,17 @@ Node.js와 Express를 사용하는 서버에 PostgreSQL 관계형 데이터베�
   - [Express Core Features](./node03-express-core-features/)
 - **Docs**
   - [Express 핵심 기능](./docs/3.%20Express%20핵심%20기능/)
+
+## 4. 웹 API 디자인
+
+웹 API를 설계할 때 REST라는 원칙을 활용하는 방법과 좋은 웹 API 디자인 요소에 대해 학습
+
+### **관련 링크**:
+
+- **Code**
+  - []()
+- **Docs**
+  - []()
 
 ## 🛠️ 참고 자료 및 도구
 
