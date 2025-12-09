@@ -24,6 +24,8 @@ Node.js와 Express를 사용하여 기본적인 REST API 서버를 구축하는 
 |         [todo-api](./node01-start-js-backend/todo-api/)         |
 | [subscription-api](./node01-start-js-backend/subscription-api/) |
 
+---
+
 ### 2. 관계형 데이터베이스를 활용한 JavaScript 서버 만들기 (`2. JavaScript 서버 with 관계형 DB`)
 
 Node.js와 Express를 사용하는 서버에 PostgreSQL 관계형 데이터베이스를 연결하고 Prisma ORM을 이용해 데이터베이스 Schema를 만드는 방법을 학습
