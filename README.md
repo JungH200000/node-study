@@ -84,4 +84,4 @@ Node.js와 Express를 사용하는 서버에 PostgreSQL 관계형 데이터베�
 
 ## 🛠️ 참고 도구
 
-- [gemini](https://gemini.google.com/?hl=ko) : 개념 보완 및 문장 구조 개선
+- [Gemini](https://gemini.google.com/?hl=ko) : 개념 보완 및 문장 구조 개선
